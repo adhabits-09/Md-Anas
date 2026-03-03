@@ -126,17 +126,112 @@
         .stat-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);}
         .counter{font-size:2rem;font-weight:800;color:var(--primary);}
 
-        /* Feedback carousel - Updated for Video aspect ratio */
-        .feedback-viewport{overflow:hidden;margin:1.5rem 0;}
-        .feedback-track{display:flex;gap:15px;width:max-content;animation:scrollLeft 40s linear infinite;}
-        .feedback-track:hover{animation-play-state:paused;}
-        @keyframes scrollLeft{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
-        .feedback-item{
-            flex-shrink:0;width:280px;height:500px;border-radius:15px;overflow:hidden;
-            box-shadow:var(--shadow);background:#000; position: relative;
+        /* ===== MANUAL SCROLL FEEDBACK SECTION ===== */
+        .feedback-wrapper {
+            position: relative;
+            padding: 0 50px; /* Space for arrows */
         }
+        
+        .feedback-viewport {
+            overflow-x: auto;
+            overflow-y: hidden;
+            margin: 1.5rem 0;
+            padding-bottom: 15px; /* Space for scrollbar */
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) var(--lightest);
+        }
+        
+        /* Custom Scrollbar Styling */
+        .feedback-viewport::-webkit-scrollbar {
+            height: 8px;
+        }
+        .feedback-viewport::-webkit-scrollbar-track {
+            background: var(--lightest);
+            border-radius: 4px;
+        }
+        .feedback-viewport::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+        .feedback-viewport::-webkit-scrollbar-thumb:hover {
+            background: var(--darkest);
+        }
+
+        .feedback-track {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            /* Removed animation - now manual scroll */
+        }
+
+        .feedback-item {
+            flex-shrink: 0;
+            width: 280px;
+            height: 500px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: #000;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .feedback-item:hover {
+            transform: scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+        
         .feedback-item iframe {
-            width: 100%; height: 100%; border: none;
+            width: 100%; 
+            height: 100%; 
+            border: none;
+        }
+
+        /* Navigation Arrows */
+        .scroll-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 45px;
+            background: var(--white);
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            color: var(--primary);
+        }
+        
+        .scroll-arrow:hover {
+            background: var(--primary);
+            color: var(--white);
+            transform: translateY(-50%) scale(1.1);
+        }
+        
+        .scroll-arrow.prev { left: 0; }
+        .scroll-arrow.next { right: 0; }
+        
+        .scroll-arrow.hidden { display: none; }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .feedback-wrapper {
+                padding: 0 10px;
+            }
+            .scroll-arrow {
+                display: none; /* Hide arrows on mobile, use touch scroll */
+            }
+            .feedback-item {
+                width: 260px;
+                height: 460px;
+            }
         }
 
         .step-card{background: var(--white); border-radius:15px;padding:1.5rem;box-shadow:var(--shadow);transition:all .4s;height:100%;}
@@ -193,7 +288,6 @@
         @media(max-width:768px){
             section{padding:40px 0;}
             .hero-section{padding:50px 0 30px;}
-            .feedback-item{width:220px; height: 400px;}
             .counter{font-size:1.6rem;}
             .wa-btn{width:100%;justify-content:center;}
             h1.display-3{font-size:1.8rem;}
@@ -201,7 +295,7 @@
         }
         @media(prefers-reduced-motion:reduce){
             *{animation-duration:.01ms !important;transition-duration:.01ms !important;}
-            .shine-effect::before,.feedback-track{animation:none !important;}
+            .shine-effect::before{animation:none !important;}
         }
     </style>
 </head>
@@ -240,7 +334,7 @@
     <div class="container">
         <div class="badge-custom glow-pulse">🚀 Join The Revolution</div>
         <h1 class="display-3 fw-bold gradient-text mb-3 animate-fade-in">
-            Join Over <span class="counter" data-target="1000" data-suffix="+">0</span> Students, Housewives & Job Professionals
+            Join Over <span class="counter" data-target="1000" data-suffix="+">0</span> Students, Housewife & Job Professionals
         </h1>
         <p class="hero-text-compact">Who have Successfully built their income online with MD Anas</p>
     </div>
@@ -288,52 +382,51 @@
     </div>
 </section>
 
-<!-- ===== FEEDBACK (YOUTUBE SHORTS) ===== -->
+<!-- ===== FEEDBACK (MANUAL SCROLL) ===== -->
 <section class="py-5" style="background: var(--white);">
     <div class="container">
         <h2 class="text-center display-5 fw-bold mb-3" style="color:var(--primary);">✨ Real Success Stories</h2>
-        <p class="text-center text-muted mb-4">Watch how our students transformed their lives</p>
-        <div class="feedback-viewport">
-            <div class="feedback-track">
-                <!-- YouTube Shorts Embeds -->
-                <div class="feedback-item">
-                    <iframe src="https://www.youtube.com/embed/tQrevC5jTD4" title="Success Story 1" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="feedback-item">
-                    <iframe src="https://www.youtube.com/embed/supimkQ95V0" title="Success Story 2" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="feedback-item">
-                    <iframe src="https://www.youtube.com/embed/f_ee0jg5mSs" title="Success Story 3" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="feedback-item">
-                    <iframe src="https://www.youtube.com/embed/TOl8rlkBimo" title="Success Story 4" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="feedback-item">
-                    <iframe src="https://www.youtube.com/embed/EJUsndW773w" title="Success Story 5" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="feedback-item">
-                    <iframe src="https://www.youtube.com/embed/4wbZSW-nNRY" title="Success Story 6" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <!-- Duplicate for infinite scroll loop -->
-                <div class="feedback-item">
-                    <iframe src="https://www.youtube.com/embed/tQrevC5jTD4" title="Success Story 1" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="feedback-item">
-                    <iframe src="https://www.youtube.com/embed/supimkQ95V0" title="Success Story 2" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="feedback-item">
-                    <iframe src="https://www.youtube.com/embed/f_ee0jg5mSs" title="Success Story 3" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="feedback-item">
-                    <iframe src="https://www.youtube.com/embed/TOl8rlkBimo" title="Success Story 4" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="feedback-item">
-                    <iframe src="https://www.youtube.com/embed/EJUsndW773w" title="Success Story 5" allowfullscreen loading="lazy"></iframe>
-                </div>
-                <div class="feedback-item">
-                    <iframe src="https://www.youtube.com/embed/4wbZSW-nNRY" title="Success Story 6" allowfullscreen loading="lazy"></iframe>
+        <p class="text-center text-muted mb-4">Drag or use arrows to explore student testimonials</p>
+        
+        <div class="feedback-wrapper">
+            <!-- Left Arrow -->
+            <button class="scroll-arrow prev" id="scrollLeft" aria-label="Scroll Left">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            
+            <!-- Scrollable Container -->
+            <div class="feedback-viewport" id="feedbackViewport">
+                <div class="feedback-track" id="feedbackTrack">
+                    <!-- YouTube Shorts Embeds -->
+                    <div class="feedback-item">
+                        <iframe src="https://www.youtube.com/embed/tQrevC5jTD4" title="Success Story 1" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="feedback-item">
+                        <iframe src="https://www.youtube.com/embed/supimkQ95V0" title="Success Story 2" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="feedback-item">
+                        <iframe src="https://www.youtube.com/embed/f_ee0jg5mSs" title="Success Story 3" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="feedback-item">
+                        <iframe src="https://www.youtube.com/embed/TOl8rlkBimo" title="Success Story 4" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="feedback-item">
+                        <iframe src="https://www.youtube.com/embed/EJUsndW773w" title="Success Story 5" allowfullscreen loading="lazy"></iframe>
+                    </div>
+                    <div class="feedback-item">
+                        <iframe src="https://www.youtube.com/embed/4wbZSW-nNRY" title="Success Story 6" allowfullscreen loading="lazy"></iframe>
+                    </div>
                 </div>
             </div>
+            
+            <!-- Right Arrow -->
+            <button class="scroll-arrow next" id="scrollRight" aria-label="Scroll Right">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+        </div>
+        
+        <div class="text-center mt-3">
+            <small class="text-muted">💡 Tip: You can also drag horizontally to scroll</small>
         </div>
     </div>
 </section>
@@ -575,6 +668,51 @@
     },{threshold:0.3});
     counters.forEach(c=>counterObserver.observe(c));
 
+    /* ===== MANUAL SCROLL LOGIC ===== */
+    const feedbackViewport = document.getElementById('feedbackViewport');
+    const scrollLeftBtn = document.getElementById('scrollLeft');
+    const scrollRightBtn = document.getElementById('scrollRight');
+    const scrollAmount = 300; // Width of one card + gap
+
+    // Scroll Left
+    scrollLeftBtn.addEventListener('click', () => {
+        feedbackViewport.scrollBy({
+            left: -scrollAmount,
+            behavior: 'smooth'
+        });
+    });
+
+    // Scroll Right
+    scrollRightBtn.addEventListener('click', () => {
+        feedbackViewport.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+    });
+
+    // Hide/Show arrows based on scroll position
+    function updateArrowVisibility() {
+        const maxScroll = feedbackViewport.scrollWidth - feedbackViewport.clientWidth;
+        
+        if (feedbackViewport.scrollLeft <= 0) {
+            scrollLeftBtn.classList.add('hidden');
+        } else {
+            scrollLeftBtn.classList.remove('hidden');
+        }
+        
+        if (feedbackViewport.scrollLeft >= maxScroll - 5) { // 5px buffer
+            scrollRightBtn.classList.add('hidden');
+        } else {
+            scrollRightBtn.classList.remove('hidden');
+        }
+    }
+
+    feedbackViewport.addEventListener('scroll', updateArrowVisibility);
+    window.addEventListener('resize', updateArrowVisibility);
+    
+    // Initial check
+    updateArrowVisibility();
+
     /* Form & Privacy logic */
     const formBackdrop=document.getElementById('formBackdrop');
     const formContainer=document.getElementById('formContainer');
@@ -585,7 +723,7 @@
     const ppCloseNew=document.getElementById('ppCloseNew');
     const privacyBtn=document.getElementById('privacyBtn');
     const SCRIPT_URL="https://script.google.com/macros/s/AKfycbyR66FYsFy35rz8TSJ9ZoFKmwxIH1dYPRZvRCVG9qrYmofkNmkxD3F0bSL12k9TgZsxzg/exec";
-    const WA_NUMBER_INT="917673057457"; // Updated Number
+    const WA_NUMBER_INT="917673057457";
 
     function openForm(source='site'){
         sourceInfo.value=source;
