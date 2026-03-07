@@ -20,17 +20,27 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
-    <!-- Meta Pixel (Base Only - No Events) -->
+    <!-- Meta Pixel Code -->
     <script>
-        !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-        n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-        n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-        t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
-        (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init','1958661304862260'); 
-        // PageView and other events removed as per request
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        
+        fbq('init', '1958661304862260');
+        
+        // Automatic PageView tracking enabled
+        fbq('track', 'PageView');
+        
+        // Note: Other events (Lead, Contact, etc.) should be configured manually 
+        // by the advertiser in Meta Events Manager (Settings > Set Up Events)
     </script>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1958661304862260&ev=PageView&noscript=1"/></noscript>
+    <!-- End Meta Pixel Code -->
 
     <style>
         /* ===== EMERALD & SLATE THEME ===== */
@@ -120,7 +130,7 @@
             background:linear-gradient(135deg,var(--primary),#042f2e);
             -webkit-background-clip:text;-webkit-text-fill-color:transparent;
             font-weight:800;
-            font-family: 'Inter', sans-serif; /* Changed to Inter */
+            font-family: 'Inter', sans-serif;
         }
         
         .hero-text-compact{max-width:700px;margin:0 auto 1.5rem;font-size:1.125rem;line-height:1.5;color:var(--darkest);}
@@ -134,7 +144,7 @@
         /* ===== VIDEO SECTION STYLING ===== */
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             border-radius: 20px;
