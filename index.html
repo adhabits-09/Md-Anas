@@ -12,7 +12,7 @@
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,24 +20,25 @@
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 
-    <!-- Meta Pixel -->
+    <!-- Meta Pixel (Base Only - No Events) -->
     <script>
         !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
         n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
         n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
         t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
         (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init','1958661304862260'); fbq('track','PageView');
+        fbq('init','1958661304862260'); 
+        // PageView and other events removed as per request
     </script>
     <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1958661304862260&ev=PageView&noscript=1"/></noscript>
 
     <style>
         /* ===== EMERALD & SLATE THEME ===== */
         :root {
-            --lightest: #f0fdfa;   /* page background */
-            --light:    #99f6e4;   /* cards, borders */
-            --primary:  #0f766e;   /* buttons, accents */
-            --darkest:  #134e4a;   /* text on light */
+            --lightest: #f0fdfa;
+            --light:    #99f6e4;
+            --primary:  #0f766e;
+            --darkest:  #134e4a;
             --white:    #FFFFFF;
             --shadow: 0 6px 20px rgba(15, 118, 110, .15);
             --shadow-hover: 0 10px 30px rgba(15, 118, 110, .25);
@@ -113,11 +114,15 @@
             color:var(--white);padding:.6rem 1.5rem;border-radius:50px;font-weight:700;font-size:.875rem;
             display:inline-block;margin-bottom:1rem;box-shadow:var(--shadow);
         }
+        
+        /* Simplified Headline Font */
         .gradient-text{
             background:linear-gradient(135deg,var(--primary),#042f2e);
             -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-            font-weight:800;font-family:'Playfair Display',serif;
+            font-weight:800;
+            font-family: 'Inter', sans-serif; /* Changed to Inter */
         }
+        
         .hero-text-compact{max-width:700px;margin:0 auto 1.5rem;font-size:1.125rem;line-height:1.5;color:var(--darkest);}
         .stat-card{
             background: var(--white); padding:1.25rem;border-radius:12px;box-shadow:var(--shadow);
@@ -126,44 +131,52 @@
         .stat-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover);}
         .counter{font-size:2rem;font-weight:800;color:var(--primary);}
 
+        /* ===== VIDEO SECTION STYLING ===== */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border: 4px solid white;
+            background: #000;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
         /* ===== MANUAL SCROLL FEEDBACK SECTION ===== */
         .feedback-wrapper {
             position: relative;
-            padding: 0 50px; /* Space for arrows */
+            padding: 0 50px;
         }
         
         .feedback-viewport {
             overflow-x: auto;
             overflow-y: hidden;
             margin: 1.5rem 0;
-            padding-bottom: 15px; /* Space for scrollbar */
+            padding-bottom: 15px;
             scroll-behavior: smooth;
-            -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+            -webkit-overflow-scrolling: touch;
             scrollbar-width: thin;
             scrollbar-color: var(--primary) var(--lightest);
         }
         
-        /* Custom Scrollbar Styling */
-        .feedback-viewport::-webkit-scrollbar {
-            height: 8px;
-        }
-        .feedback-viewport::-webkit-scrollbar-track {
-            background: var(--lightest);
-            border-radius: 4px;
-        }
-        .feedback-viewport::-webkit-scrollbar-thumb {
-            background: var(--primary);
-            border-radius: 4px;
-        }
-        .feedback-viewport::-webkit-scrollbar-thumb:hover {
-            background: var(--darkest);
-        }
+        .feedback-viewport::-webkit-scrollbar { height: 8px; }
+        .feedback-viewport::-webkit-scrollbar-track { background: var(--lightest); border-radius: 4px; }
+        .feedback-viewport::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+        .feedback-viewport::-webkit-scrollbar-thumb:hover { background: var(--darkest); }
 
         .feedback-track {
             display: flex;
             gap: 20px;
             width: max-content;
-            /* Removed animation - now manual scroll */
         }
 
         .feedback-item {
@@ -177,19 +190,9 @@
             position: relative;
             transition: transform 0.3s ease;
         }
-        
-        .feedback-item:hover {
-            transform: scale(1.02);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        .feedback-item iframe {
-            width: 100%; 
-            height: 100%; 
-            border: none;
-        }
+        .feedback-item:hover { transform: scale(1.02); box-shadow: var(--shadow-hover); }
+        .feedback-item iframe { width: 100%; height: 100%; border: none; }
 
-        /* Navigation Arrows */
         .scroll-arrow {
             position: absolute;
             top: 50%;
@@ -208,30 +211,15 @@
             transition: all 0.3s ease;
             color: var(--primary);
         }
-        
-        .scroll-arrow:hover {
-            background: var(--primary);
-            color: var(--white);
-            transform: translateY(-50%) scale(1.1);
-        }
-        
+        .scroll-arrow:hover { background: var(--primary); color: var(--white); transform: translateY(-50%) scale(1.1); }
         .scroll-arrow.prev { left: 0; }
         .scroll-arrow.next { right: 0; }
-        
         .scroll-arrow.hidden { display: none; }
 
-        /* Mobile adjustments */
         @media (max-width: 768px) {
-            .feedback-wrapper {
-                padding: 0 10px;
-            }
-            .scroll-arrow {
-                display: none; /* Hide arrows on mobile, use touch scroll */
-            }
-            .feedback-item {
-                width: 260px;
-                height: 460px;
-            }
+            .feedback-wrapper { padding: 0 10px; }
+            .scroll-arrow { display: none; }
+            .feedback-item { width: 260px; height: 460px; }
         }
 
         .step-card{background: var(--white); border-radius:15px;padding:1.5rem;box-shadow:var(--shadow);transition:all .4s;height:100%;}
@@ -243,16 +231,7 @@
         .accordion-button:not(.collapsed){background:linear-gradient(135deg,var(--lightest),var(--white));color:var(--primary);}
         .accordion-body{color:var(--darkest);}
 
-        /* Modal backdrops */
-        .form-backdrop,.privacy-modal{position:fixed;inset:0;background:rgba(19, 78, 74,.8);backdrop-filter:blur(8px);z-index:9999;opacity:0;visibility:hidden;transition:all .4s;}
-        .form-backdrop.show,.privacy-modal.show{opacity:1;visibility:visible;}
-        #formContainer,#privacyContent{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.9);z-index:10000;max-width:500px;width:90%;max-height:85vh;opacity:0;visibility:hidden;transition:all .4s;background:var(--white);border:1px solid var(--primary);border-radius:15px;box-shadow:var(--glow-intense);}
-        #formContainer.show,#privacyContent.show{opacity:1;visibility:visible;transform:translate(-50%,-50%) scale(1);}
-        .form-card{box-shadow:0 0 40px rgba(15, 118, 110,.3);border:1px solid var(--primary);}
-        .form-control,.form-select{background: var(--lightest); border:2px solid var(--light);color:var(--darkest);border-radius:8px;padding:.6rem .9rem;transition:all .3s;}
-        .form-control:focus,.form-select:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(15, 118, 110,.15);}
-
-        /* ===== NEW CENTRED PP MODAL (CLEAN) ===== */
+        /* Privacy Modal */
         .pp-overlay-new{position:fixed;inset:0;background:rgba(19, 78, 74,.75);backdrop-filter:blur(4px);z-index:10001;opacity:0;visibility:hidden;transition:opacity .3s ease}
         .pp-overlay-new.show{opacity:1;visibility:visible}
         .pp-modal-new{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(.95);width:90%;max-width:560px;max-height:86vh;background:#fff;border-radius:16px;box-shadow:0 20px 40px rgba(15, 118, 110,.25);display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:all .3s ease}
@@ -272,19 +251,6 @@
             .pp-body-new{padding:1rem}
         }
 
-        /* Profile Image Styling */
-        .profile-img-container {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-            border: 4px solid white;
-        }
-        .profile-img-container img {
-            width: 100%;
-            display: block;
-        }
-
         @media(max-width:768px){
             section{padding:40px 0;}
             .hero-section{padding:50px 0 30px;}
@@ -301,9 +267,6 @@
 </head>
 <body class="text-dark">
 
-<!-- FORM BACKDROP -->
-<div class="form-backdrop" id="formBackdrop"></div>
-
 <!-- ===== NEW CLEAN PP MODAL ===== -->
 <div class="pp-overlay-new" id="ppOverlayNew">
     <div class="pp-modal-new">
@@ -314,16 +277,12 @@
         <div class="pp-body-new">
             <h3>Information We Collect</h3>
             <p>We collect information you provide directly to us, such as your name, phone number, and email address when you contact us through WhatsApp or other channels.</p>
-
             <h3>How We Use Your Information</h3>
             <p>Your information is used solely to communicate with you about our training programs, provide customer support, and send updates about courses you've expressed interest in.</p>
-
             <h3>Data Protection</h3>
             <p>We implement appropriate security measures to protect your personal information. Your data is never sold or shared with third parties for marketing purposes.</p>
-
             <h3>Your Rights</h3>
             <p>You have the right to access, correct, or delete your personal information at any time. Contact us to exercise these rights or for any privacy-related concerns.</p>
-
             <div class="pp-footer-new">By using our services, you agree to this privacy policy. Last updated: December 2024</div>
         </div>
     </div>
@@ -340,17 +299,29 @@
     </div>
 </section>
 
-<!-- ===== ABOUT / PROFILE IMAGE ===== -->
+<!-- ===== ABOUT / VIDEO SECTION ===== -->
 <section class="py-5" style="background: var(--lightest);">
     <div class="container">
         <div class="row g-5 align-items-center">
-            <div class="col-lg-5">
-                <div class="profile-img-container shine-effect">
-                    <!-- NEW IMAGE LINK UPDATED HERE -->
-                    <img src="https://i.ibb.co/Z18HRZdC/file-000000009e3871fda1c484ce40e15440.png" alt="MD Anas - Online Income Coach">
+            <div class="col-lg-6">
+                <!-- VIDEO CONTAINER -->
+                <div class="video-container shine-effect">
+                    <iframe 
+                        src="https://www.youtube.com/embed/_z7l4b-owb8?rel=0" 
+                        title="MD Anas Introduction" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <!-- WHATSAPP BUTTON BELOW VIDEO -->
+                <div class="text-center mt-4">
+                    <a href="https://wa.me/917673057457?text=I%20am%20interested" target="_blank" class="wa-btn shine-effect glow-pulse" style="font-size: 1.1rem; padding: 1rem 2.5rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        Chat on WhatsApp
+                    </a>
                 </div>
             </div>
-            <div class="col-lg-7">
+            <div class="col-lg-6">
                 <div class="badge-custom mb-2">💫 Your Mentor</div>
                 <h2 class="display-5 fw-bold mb-3">Hi, I'm MD Anas</h2>
                 
@@ -370,7 +341,10 @@
                     <p class="fs-5 d-flex align-items-center gap-2">🌱 Sustainable Growth</p>
                 </div>
 
-                <button class="wa-btn mb-4 open-any shine-effect">📲 Connect on WhatsApp</button>
+                <!-- Main WhatsApp Button (Also Direct) -->
+                <a href="https://wa.me/917673057457?text=I%20am%20interested" target="_blank" class="wa-btn mb-4 shine-effect">
+                    📲 Connect on WhatsApp
+                </a>
                 
                 <div class="row g-3">
                     <div class="col-md-4"><div class="stat-card shine-effect"><div class="counter" data-target="1000" data-suffix="+">0</div><p>Students Trained</p></div></div>
@@ -389,15 +363,12 @@
         <p class="text-center text-muted mb-4">Drag or use arrows to explore student testimonials</p>
         
         <div class="feedback-wrapper">
-            <!-- Left Arrow -->
             <button class="scroll-arrow prev" id="scrollLeft" aria-label="Scroll Left">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             </button>
             
-            <!-- Scrollable Container -->
             <div class="feedback-viewport" id="feedbackViewport">
                 <div class="feedback-track" id="feedbackTrack">
-                    <!-- YouTube Shorts Embeds -->
                     <div class="feedback-item">
                         <iframe src="https://www.youtube.com/embed/tQrevC5jTD4" title="Success Story 1" allowfullscreen loading="lazy"></iframe>
                     </div>
@@ -419,7 +390,6 @@
                 </div>
             </div>
             
-            <!-- Right Arrow -->
             <button class="scroll-arrow next" id="scrollRight" aria-label="Scroll Right">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
             </button>
@@ -481,7 +451,9 @@
                 </div>
             </div>
         </div>
-        <div class="text-center mt-5"><button class="wa-btn open-any shine-effect">📲 Get Started Now</button></div>
+        <div class="text-center mt-5">
+            <a href="https://wa.me/917673057457?text=I%20am%20interested" target="_blank" class="wa-btn shine-effect">📲 Get Started Now</a>
+        </div>
     </div>
 </section>
 
@@ -557,7 +529,9 @@
                 <div class="col-md-4"><div class="glow-border text-dark p-3 rounded" style="background:var(--lightest);"><strong>💼 Profession:</strong> Current Status</div></div>
             </div>
             <p class="fs-6 fw-semibold mb-3" style="color:var(--primary);">📌 Save My Number: 7673057457</p>
-            <button class="wa-btn open-any glow-pulse" style="background:var(--primary);color:var(--white);border:1px solid var(--primary);">📲 Message on WhatsApp Now</button>
+            <a href="https://wa.me/917673057457?text=I%20am%20interested" target="_blank" class="wa-btn glow-pulse" style="background:var(--primary);color:var(--white);border:1px solid var(--primary); justify-content: center;">
+                📲 Message on WhatsApp Now
+            </a>
         </div>
         <div class="card border-0 p-3 mb-3 glow-border" style="background:rgba(255,255,255,.15);">
             <h4 class="h5 fw-bold mb-2">⏳ Within 24 hours:</h4>
@@ -571,76 +545,6 @@
         <p class="fs-4 fw-bold mb-1">❤️ With Strength & Sincerity, MD Anas</p>
     </div>
 </section>
-
-<!-- ===== FORM POPUP ===== -->
-<div id="formContainer">
-    <div class="card form-card glow-pulse">
-        <div class="card-body p-4 position-relative">
-            <button id="closeFormBtn" class="btn-close position-absolute top-0 end-0 m-3" aria-label="Close"></button>
-            <div class="text-center mb-4">
-                <h2 class="h4 fw-bold mb-1" style="color:var(--primary);">🚀 Start Your Journey</h2>
-                <p class="text-muted small">Fill details to get started</p>
-            </div>
-            <form id="mainForm" novalidate>
-                <input type="hidden" id="sourceInfo" name="sourceInfo">
-                <div class="row g-2">
-                    <!-- NAME -->
-                    <div class="col-12">
-                        <label class="form-label d-flex align-items-center gap-2">
-                            <i data-lucide="user" style="width:16px;"></i> Full Name *
-                        </label>
-                        <input id="inp_name" type="text" class="form-control" required value="">
-                    </div>
-
-                    <!-- PHONE -->
-                    <div class="col-12">
-                        <label class="form-label d-flex align-items-center gap-2">
-                            <i data-lucide="phone" style="width:16px;"></i> Phone *
-                        </label>
-                        <input id="inp_phone" type="tel" class="form-control" required maxlength="10" value="">
-                    </div>
-
-                    <!-- AGE -->
-                    <div class="col-6">
-                        <label class="form-label d-flex align-items-center gap-2">
-                            <i data-lucide="calendar" style="width:16px;"></i> Age *
-                        </label>
-                        <input id="inp_age" type="number" class="form-control" required min="15" max="65" value="">
-                    </div>
-
-                    <!-- GENDER -->
-                    <div class="col-6">
-                        <label class="form-label d-flex align-items-center gap-2">
-                            <i data-lucide="users" style="width:16px;"></i> Gender *
-                        </label>
-                        <select id="inp_gender" class="form-select" required>
-                            <option value="male" selected>Male</option>
-                            <option value="female">Female</option>
-                            <option value="other">Other</option>
-                        </select>
-                    </div>
-
-                    <!-- PROFESSION -->
-                    <div class="col-12">
-                        <label class="form-label d-flex align-items-center gap-2">
-                            <i data-lucide="briefcase" style="width:16px;"></i> Profession *
-                        </label>
-                        <select id="inp_profession" class="form-select" required>
-                            <option selected>Student</option>
-                            <option>Working Professional</option>
-                            <option>Housewife</option>
-                            <option>Other</option>
-                        </select>
-                    </div>
-
-                    <div class="col-12">
-                        <button type="submit" class="wa-btn w-100">📲 Send to WhatsApp</button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -672,71 +576,34 @@
     const feedbackViewport = document.getElementById('feedbackViewport');
     const scrollLeftBtn = document.getElementById('scrollLeft');
     const scrollRightBtn = document.getElementById('scrollRight');
-    const scrollAmount = 300; // Width of one card + gap
+    const scrollAmount = 300;
 
-    // Scroll Left
     scrollLeftBtn.addEventListener('click', () => {
-        feedbackViewport.scrollBy({
-            left: -scrollAmount,
-            behavior: 'smooth'
-        });
+        feedbackViewport.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
     });
 
-    // Scroll Right
     scrollRightBtn.addEventListener('click', () => {
-        feedbackViewport.scrollBy({
-            left: scrollAmount,
-            behavior: 'smooth'
-        });
+        feedbackViewport.scrollBy({ left: scrollAmount, behavior: 'smooth' });
     });
 
-    // Hide/Show arrows based on scroll position
     function updateArrowVisibility() {
         const maxScroll = feedbackViewport.scrollWidth - feedbackViewport.clientWidth;
+        if (feedbackViewport.scrollLeft <= 0) { scrollLeftBtn.classList.add('hidden'); } 
+        else { scrollLeftBtn.classList.remove('hidden'); }
         
-        if (feedbackViewport.scrollLeft <= 0) {
-            scrollLeftBtn.classList.add('hidden');
-        } else {
-            scrollLeftBtn.classList.remove('hidden');
-        }
-        
-        if (feedbackViewport.scrollLeft >= maxScroll - 5) { // 5px buffer
-            scrollRightBtn.classList.add('hidden');
-        } else {
-            scrollRightBtn.classList.remove('hidden');
-        }
+        if (feedbackViewport.scrollLeft >= maxScroll - 5) { scrollRightBtn.classList.add('hidden'); } 
+        else { scrollRightBtn.classList.remove('hidden'); }
     }
 
     feedbackViewport.addEventListener('scroll', updateArrowVisibility);
     window.addEventListener('resize', updateArrowVisibility);
-    
-    // Initial check
     updateArrowVisibility();
 
-    /* Form & Privacy logic */
-    const formBackdrop=document.getElementById('formBackdrop');
-    const formContainer=document.getElementById('formContainer');
-    const mainForm=document.getElementById('mainForm');
-    const sourceInfo=document.getElementById('sourceInfo');
-    const closeFormBtn=document.getElementById('closeFormBtn');
+    /* Privacy Modal Logic */
     const ppOverlayNew=document.getElementById('ppOverlayNew');
     const ppCloseNew=document.getElementById('ppCloseNew');
     const privacyBtn=document.getElementById('privacyBtn');
-    const SCRIPT_URL="https://script.google.com/macros/s/AKfycbyR66FYsFy35rz8TSJ9ZoFKmwxIH1dYPRZvRCVG9qrYmofkNmkxD3F0bSL12k9TgZsxzg/exec";
-    const WA_NUMBER_INT="917673057457";
 
-    function openForm(source='site'){
-        sourceInfo.value=source;
-        formBackdrop.classList.add('show');
-        formContainer.classList.add('show');
-        document.body.style.overflow='hidden';
-    }
-    function closeForm(){
-        formBackdrop.classList.remove('show');
-        formContainer.classList.remove('show');
-        document.body.style.overflow='';
-        setTimeout(()=>mainForm.reset(),300);
-    }
     function openPPNew(){
         ppOverlayNew.classList.add('show');
         document.body.style.overflow='hidden';
@@ -745,33 +612,13 @@
         ppOverlayNew.classList.remove('show');
         document.body.style.overflow='';
     }
-    formBackdrop.addEventListener('click',closeForm);
-    closeFormBtn.addEventListener('click',closeForm);
-    privacyBtn.addEventListener('click',openPPNew);
-    ppCloseNew.addEventListener('click',closePPNew);
-    ppOverlayNew.addEventListener('click',function(e){if(e.target===ppOverlayNew)closePPNew();});
-    document.addEventListener('click',(e)=>{
-        const trigger=e.target.closest('.open-any');
-        if(trigger&&!trigger.closest('#formContainer')){e.preventDefault();openForm(trigger.dataset.source||'Website');}
-    });
-    mainForm.addEventListener('submit',(e)=>{
-        e.preventDefault();
-        const name=document.getElementById('inp_name').value.trim();
-        const phone=document.getElementById('inp_phone').value.replace(/\D/g,'');
-        const age=document.getElementById('inp_age').value;
-        const gender=document.getElementById('inp_gender').value;
-        const profession=document.getElementById('inp_profession').value;
-        if(!name||phone.length<6||!age||!gender||!profession){alert('Please fill all fields correctly.');return;}
-        const formData=new FormData();
-        formData.append('name',name);formData.append('phone',phone);formData.append('age',age);formData.append('gender',gender);formData.append('profession',profession);formData.append('source',sourceInfo.value);formData.append('timestamp',new Date().toISOString());
-        fetch(SCRIPT_URL,{method:'POST',body:formData,mode:'no-cors'}).catch(()=>{});
-        const msg=encodeURIComponent(`Hello Sir,\n\nI am interested in your program. Here are my details:\n\nName: ${name}\nPhone: ${phone}\nAge: ${age}\nGender: ${gender}\nProfession: ${profession}\n\nPlease share next steps. Thank you!`);
-        if(typeof fbq!=='undefined'){fbq('track','Contact');fbq('track','Lead',{content_name:'WhatsApp Form',content_source:sourceInfo.value});}
-        window.open(`https://wa.me/${WA_NUMBER_INT}?text=${msg}`,'_blank');
-        closeForm();
-    });
+    
+    privacyBtn.addEventListener('click', openPPNew);
+    ppCloseNew.addEventListener('click', closePPNew);
+    ppOverlayNew.addEventListener('click', function(e){ if(e.target===ppOverlayNew) closePPNew(); });
+    
     document.addEventListener('keydown',(e)=>{
-        if(e.key==='Escape'){closeForm();closePPNew();}
+        if(e.key==='Escape'){ closePPNew(); }
     });
 </script>
 </body>
