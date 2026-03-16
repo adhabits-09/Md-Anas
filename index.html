@@ -161,13 +161,13 @@
             border: none;
         }
 
-        /* ===== MANUAL SCROLL FEEDBACK SECTION ===== */
-        .feedback-wrapper {
+        /* ===== SHORTS FEEDBACK SECTION STYLING ===== */
+        .shorts-feedback-wrapper {
             position: relative;
             padding: 0 50px;
         }
         
-        .feedback-viewport {
+        .shorts-viewport {
             overflow-x: auto;
             overflow-y: hidden;
             margin: 1.5rem 0;
@@ -178,21 +178,21 @@
             scrollbar-color: var(--primary) var(--lightest);
         }
         
-        .feedback-viewport::-webkit-scrollbar { height: 8px; }
-        .feedback-viewport::-webkit-scrollbar-track { background: var(--lightest); border-radius: 4px; }
-        .feedback-viewport::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
-        .feedback-viewport::-webkit-scrollbar-thumb:hover { background: var(--darkest); }
+        .shorts-viewport::-webkit-scrollbar { height: 8px; }
+        .shorts-viewport::-webkit-scrollbar-track { background: var(--lightest); border-radius: 4px; }
+        .shorts-viewport::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+        .shorts-viewport::-webkit-scrollbar-thumb:hover { background: var(--darkest); }
 
-        .feedback-track {
+        .shorts-track {
             display: flex;
             gap: 20px;
             width: max-content;
         }
 
-        .feedback-item {
+        .shorts-item {
             flex-shrink: 0;
-            width: 280px;
-            height: 500px;
+            width: 315px;
+            height: 560px;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: var(--shadow);
@@ -200,8 +200,8 @@
             position: relative;
             transition: transform 0.3s ease;
         }
-        .feedback-item:hover { transform: scale(1.02); box-shadow: var(--shadow-hover); }
-        .feedback-item iframe { width: 100%; height: 100%; border: none; }
+        .shorts-item:hover { transform: scale(1.02); box-shadow: var(--shadow-hover); }
+        .shorts-item iframe { width: 100%; height: 100%; border: none; }
 
         .scroll-arrow {
             position: absolute;
@@ -227,9 +227,9 @@
         .scroll-arrow.hidden { display: none; }
 
         @media (max-width: 768px) {
-            .feedback-wrapper { padding: 0 10px; }
+            .shorts-feedback-wrapper { padding: 0 10px; }
             .scroll-arrow { display: none; }
-            .feedback-item { width: 260px; height: 460px; }
+            .shorts-item { width: 260px; height: 460px; }
         }
 
         .step-card{background: var(--white); border-radius:15px;padding:1.5rem;box-shadow:var(--shadow);transition:all .4s;height:100%;}
@@ -314,10 +314,10 @@
     <div class="container">
         <div class="row g-5 align-items-center">
             <div class="col-lg-6">
-                <!-- VIDEO CONTAINER -->
+                <!-- VIDEO CONTAINER - NEW VIDEO -->
                 <div class="video-container shine-effect">
                     <iframe 
-                        src="https://www.youtube.com/embed/_z7l4b-owb8?rel=0" 
+                        src="https://www.youtube.com/embed/l69fQyOddu0?rel=0" 
                         title="MD Anas Introduction" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
@@ -366,35 +366,40 @@
     </div>
 </section>
 
-<!-- ===== FEEDBACK (MANUAL SCROLL) ===== -->
+<!-- ===== FEEDBACK (YOUTUBE SHORTS) ===== -->
 <section class="py-5" style="background: var(--white);">
     <div class="container">
         <h2 class="text-center display-5 fw-bold mb-3" style="color:var(--primary);">✨ Real Success Stories</h2>
         <p class="text-center text-muted mb-4">Drag or use arrows to explore student testimonials</p>
         
-        <div class="feedback-wrapper">
+        <div class="shorts-feedback-wrapper">
             <button class="scroll-arrow prev" id="scrollLeft" aria-label="Scroll Left">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
             </button>
             
-            <div class="feedback-viewport" id="feedbackViewport">
-                <div class="feedback-track" id="feedbackTrack">
-                    <div class="feedback-item">
+            <div class="shorts-viewport" id="feedbackViewport">
+                <div class="shorts-track" id="feedbackTrack">
+                    <!-- First Video - Same as before -->
+                    <div class="shorts-item">
                         <iframe src="https://www.youtube.com/embed/tQrevC5jTD4" title="Success Story 1" allowfullscreen loading="lazy"></iframe>
                     </div>
-                    <div class="feedback-item">
-                        <iframe src="https://www.youtube.com/embed/supimkQ95V0" title="Success Story 2" allowfullscreen loading="lazy"></iframe>
+                    
+                    <!-- 4 NEW SHORTS VIDEOS -->
+                    <div class="shorts-item">
+                        <iframe src="https://www.youtube.com/embed/vdj_lZHHI-s" title="Success Story 2" allowfullscreen loading="lazy"></iframe>
                     </div>
-                    <div class="feedback-item">
-                        <iframe src="https://www.youtube.com/embed/f_ee0jg5mSs" title="Success Story 3" allowfullscreen loading="lazy"></iframe>
+                    <div class="shorts-item">
+                        <iframe src="https://www.youtube.com/embed/uxOtB3KwBAs" title="Success Story 3" allowfullscreen loading="lazy"></iframe>
                     </div>
-                    <div class="feedback-item">
-                        <iframe src="https://www.youtube.com/embed/TOl8rlkBimo" title="Success Story 4" allowfullscreen loading="lazy"></iframe>
+                    <div class="shorts-item">
+                        <iframe src="https://www.youtube.com/embed/eMfclBQ9PZY" title="Success Story 4" allowfullscreen loading="lazy"></iframe>
                     </div>
-                    <div class="feedback-item">
-                        <iframe src="https://www.youtube.com/embed/EJUsndW773w" title="Success Story 5" allowfullscreen loading="lazy"></iframe>
+                    <div class="shorts-item">
+                        <iframe src="https://www.youtube.com/embed/B8vrhqslC-M" title="Success Story 5" allowfullscreen loading="lazy"></iframe>
                     </div>
-                    <div class="feedback-item">
+                    
+                    <!-- Last Video - Same as before -->
+                    <div class="shorts-item">
                         <iframe src="https://www.youtube.com/embed/4wbZSW-nNRY" title="Success Story 6" allowfullscreen loading="lazy"></iframe>
                     </div>
                 </div>
@@ -586,7 +591,7 @@
     const feedbackViewport = document.getElementById('feedbackViewport');
     const scrollLeftBtn = document.getElementById('scrollLeft');
     const scrollRightBtn = document.getElementById('scrollRight');
-    const scrollAmount = 300;
+    const scrollAmount = 335; // Adjusted for shorts width + gap
 
     scrollLeftBtn.addEventListener('click', () => {
         feedbackViewport.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
